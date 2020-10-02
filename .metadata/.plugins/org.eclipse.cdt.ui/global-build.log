@@ -647,3 +647,10 @@ Finished building: F051_Test.bin
  
 Finished building: F051_Test.list
  
+18:10:47 **** Incremental Build of configuration Debug for project F051_Test ****
+make -j4 all 
+arm-none-eabi-size   F051_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30132	    204	   2892	  33228	   81cc	F051_Test.elf
+Finished building: default.size.stdout
+ 
