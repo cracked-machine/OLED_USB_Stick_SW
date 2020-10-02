@@ -1,0 +1,5 @@
+user_app.c:25:23:I2C_DeviceScan	24	static
+user_app.c:42:6:HAL_UART_RxCpltCallback	24	static
+user_app.c:60:6:test_i2c_device	16	static
+user_app.c:84:6:i2c_display_loop	8	static
+user_app.c:94:6:pop_msg_out_buf_stack	8	static

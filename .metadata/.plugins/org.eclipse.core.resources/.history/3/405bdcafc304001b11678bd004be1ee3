@@ -1,0 +1,13 @@
+/*
+ * UserApp.h
+ *
+ *  Created on: Oct 2, 2020
+ *      Author: chris
+ */
+
+#ifndef USER_APP_H_
+#define USER_APP_H_
+
+SM_DeviceFoundTypedef I2C_DeviceScan();
+
+#endif /* USER_APP_H_ */

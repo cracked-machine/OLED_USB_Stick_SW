@@ -1,0 +1,61 @@
+/*
+ * user_app.c
+ *
+ *  Created on: Oct 2, 2020
+ *      Author: chris
+ */
+
+#include "user_app.h"
+#include "main.h"
+#include "dma.h"
+#include "i2c.h"
+#include "usart.h"
+#include "gpio.h"
+
+SM_DeviceFoundTypedef I2C_DeviceScan() {
+
+	SM_DeviceFoundTypedef smbus_status = SMBUS_DEVICE_MISSING;
+
+    HAL_StatusTypeDef res;
+    for(uint16_t i = 0; i < 128; i++)
+    {
+        res = HAL_I2C_IsDeviceReady(&hi2c1, i << 1, 1, 10);
+        if(res == HAL_OK)
+        {
+           	smbus_status = SMBUS_DEVICE_FOUND;
+        }
+    }
+
+    return smbus_status;
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	// blink led on rx
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+}
+
+void test_i2c_device()
+{
+	  if(I2C_DeviceScan())
+	  {
+		  // start test blink
+		  for(int t=0; t<4; t++)
+		  {
+			  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+			  HAL_Delay(100);
+		  }
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+
+		  ssd1306_TestAll();
+
+		  // end test blink
+		  for(int t=0; t<4; t++)
+		  {
+			  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+			  HAL_Delay(100);
+		  }
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	  }
+}

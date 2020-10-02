@@ -1,0 +1,26 @@
+/*
+ * user_app.c
+ *
+ *  Created on: Oct 2, 2020
+ *      Author: chris
+ */
+
+#include "user_app.h"
+
+
+SM_DeviceFoundTypedef I2C_DeviceScan() {
+
+	SM_DeviceFoundTypedef smbus_status = SMBUS_DEVICE_MISSING;
+
+    HAL_StatusTypeDef res;
+    for(uint16_t i = 0; i < 128; i++)
+    {
+        res = HAL_I2C_IsDeviceReady(&hi2c1, i << 1, 1, 10);
+        if(res == HAL_OK)
+        {
+           	smbus_status = SMBUS_DEVICE_FOUND;
+        }
+    }
+
+    return smbus_status;
+}
