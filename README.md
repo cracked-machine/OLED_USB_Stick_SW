@@ -1,5 +1,7 @@
 ## OLED_USB_Stick_SW
 
+Related HW project: https://github.com/cracked-machine/OLED_USB_Stick_HW
+
 ### Program device
 
 1. Set slide switch to PRG
